@@ -5,7 +5,7 @@ def view_items():
     client= boto3.client('dynamodb')
     
     response= client.get_item(
-       TableName= 'VisitorCounter',
+       TableName= 'VisitorCounterDB',
        Key= {
            'Version': {
                'N': '1'
@@ -23,7 +23,7 @@ def dynamo_action():
     client = boto3.client('dynamodb')
 
     client.update_item(
-        TableName='VisitorCounter',
+        TableName='VisitorCounterDB',
         Key= { 
             'Version': { 
                 'N': '1'
