@@ -174,3 +174,27 @@ resource "aws_apigatewayv2_stage" "lambda-stage" {
   name   = "$default"
   auto_deploy = true
 }
+
+resource "aws_sns_topic" "lambda_alert" {
+  name = "LAMBDA_ALERT"
+}
+
+resource "aws_sns_topic_subscription" "email_alert" {
+  topic_arn = aws_sns_topic.lambda_alert.arn
+  protocol = "email"
+  endpoint = "ojichinedu4@gmail.com"
+}
+
+resource "aws_cloudwatch_metric_alarm" "lambda_error" {
+  alarm_name = "LAMBDA_ERROR"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods = "5"
+  metric_name = "Errors"
+  namespace = "AWS/Lambda"
+  period = "300"
+  statistic = "Average"
+  threshold = "1"
+  actions_enabled = true
+  alarm_actions = [ aws_sns_topic.lambda_alert.arn ]
+  alarm_description = "Alerts me when Lambda has an error"
+}
