@@ -1,3 +1,13 @@
+terraform {
+  backend "remote" {
+    organization = "chxnedu-crc"
+
+    workspaces {
+      name = "Prod-Env-Backend"
+    }
+  }
+}
+
 provider "aws" {
   region = "us-east-1"
 }
@@ -173,6 +183,10 @@ resource "aws_apigatewayv2_stage" "lambda-stage" {
   api_id = aws_apigatewayv2_api.crc-api.id
   name   = "$default"
   auto_deploy = true
+}
+
+output "api_endpoint" {
+  value = aws_apigatewayv2_api.crc-api.api_endpoint
 }
 
 resource "aws_sns_topic" "lambda_alert" {
