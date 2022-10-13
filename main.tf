@@ -156,6 +156,9 @@ resource "aws_lambda_permission" "lambda-permission" {
 resource "aws_apigatewayv2_api" "crc-api" {
   name = "CRC-API"
   protocol_type = "HTTP"
+  cors_configuration {
+    allow_origins = "https://resume.chxnedu.com"
+  }
 
   depends_on = [
     aws_lambda_function.UpdateVisitorCount
