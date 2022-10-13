@@ -1,0 +1,15 @@
+{
+    "name": "Cloud-Resume-Challenge-AWS-BACKEND",
+    "version": "1.0.0",
+    "description": "cypress test",
+    "main": "cypress.config.js",
+    "scripts": {
+      "test": "cypress run"
+    },
+    "author": "",
+    "license": "ISC",
+    "private": true,
+    "devDependencies": {
+      "cypress": "^10.0.0"
+    }
+  }
