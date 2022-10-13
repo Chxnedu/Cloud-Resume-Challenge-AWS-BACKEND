@@ -157,7 +157,7 @@ resource "aws_apigatewayv2_api" "crc-api" {
   name = "CRC-API"
   protocol_type = "HTTP"
   cors_configuration {
-    allow_origins = "https://resume.chxnedu.com"
+    allow_origins = ["https://resume.chxnedu.com"]
   }
 
   depends_on = [
