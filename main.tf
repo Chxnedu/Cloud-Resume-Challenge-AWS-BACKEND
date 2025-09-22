@@ -137,7 +137,7 @@ resource "aws_lambda_function" "UpdateVisitorCount" {
   architectures = ["x86_64"]
   filename = "${path.module}/python/lambda_python.zip"
   handler = "lambda_code.update"
-  runtime = "python3.9"
+  runtime = "python3.13"
 
   depends_on = [
     aws_dynamodb_table_item.Count,
